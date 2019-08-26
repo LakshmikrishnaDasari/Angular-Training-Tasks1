@@ -1,0 +1,22 @@
+<h2 style="text-align: center; color:darkslateblue">Chaining Pipes</h2>
+<h4 style="color:blue">pipe with a chain of date|uppercase|slice</h4>
+<p>Month is {{today | date | uppercase | slice:0:4}}
+<h4 style="color:blue">pipe with a chain of json|titlecase</h4>
+<p>{{employee | json | titlecase}}</p>
+<h4 style="color:blue">pipe with a chain of json|uppercase</h4>
+<p>{{employee | json | uppercase}}</p>
+
+
+<h2 style="text-align: center; color:darkslateblue">Parameterizing Pipes</h2>
+<h4 style="color:blue">Parameterized pipe with date format</h4>
+<p>My birthday is {{ birthday | date:format }}</p>
+  <button (click)="dateFormat()">Toggle Format</button>
+  <h4 style="color:blue">Parameterized pipe with number format</h4>
+  <p>{{10.456 | number:format1}}</p>
+  <button (click)="numberFormat()">Toggle Format</button>
+
+
+
+
+
+  <p>{{num | addition: 5000}}</p>

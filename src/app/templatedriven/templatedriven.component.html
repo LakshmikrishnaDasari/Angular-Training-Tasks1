@@ -1,0 +1,237 @@
+<div clas="temp">
+    <form #appform="ngForm"  [appPasswordtrail]="['Password','cPassword']">
+        <h1 style="text-align:center ; color:blueviolet">{{formname}}</h1>
+        <input [disabled]="true" [value]='form1' pInputText/>
+        <!-- <input disabled="true" value={{formname}}/> -->
+        
+        <div class="ui-g">
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Name :</b></h3>
+                    <input type="text"  [value]='form1' size="20" pInputText [(ngModel)]="name" name="name" required="required"
+                        minlength="6" maxlength="20" pattern="^[a-zA-Z ]*$" #Name="ngModel">
+                    <span class="errMsg" *ngIf="Name.errors?.required && (Name.touched)">Name
+                        is Required</span>
+                    <span class="errMsg" *ngIf="Name.errors?.minlength ||Name.errors?.maxlength">Field
+                        should contain minimum 6 characters</span>
+                </div>
+                <h4>name:{{name}}</h4>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Date Of Birth:</b></h3>
+                    <p-calendar [(ngModel)]="DateOfBirth" name="DateOfBirth" placeholder="Calendar control">
+                    </p-calendar>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Interested In:</b></h3>
+                    <p-checkbox name="Interested" value="Development" label="Development" [(ngModel)]="Interested">
+                    </p-checkbox>
+                    <p-checkbox name="Interested" value="QA" label="QA" [(ngModel)]="QA" name="Interested">
+                    </p-checkbox>
+                    <p-checkbox name="Interested" value="Database" label="Database" [(ngModel)]="Interested">
+                    </p-checkbox>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Email Address:</b></h3>
+                    <input type="text" size="20" pInputText [(ngModel)]="Email" name="Email" required="required"
+                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.com" #eaddress="ngModel">
+                    <span class="errMsg" *ngIf="eaddress.errors?.required && (eaddress.touched)">Email
+                        is Required</span>
+                    <span class="errMsg" *ngIf="eaddress.errors?.pattern">Please Enter Valid Email!</span>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Password:</b></h3>
+                    <input type="password" placeholder="Hint: format of 'Mguy@jjjjj'" [(ngModel)]="Password"
+                        name="Password" required="required" pattern="^[A-Z]+[a-zA-Z0-9-]+@[a-zA-Z0-9-]+$"
+                        #password="ngModel" pPassword />
+                    <span class="errMsg" *ngIf="password.errors?.required && (password.touched)">Password
+                        is Required</span>
+                    <span class="errMsg" *ngIf="password.errors?.pattern">Please Enter Valid Password!</span>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Confirm Password:</b></h3>
+                    <input type="password" [(ngModel)]="cPassword" name="cPassword" required="required" 
+                        #cpassword="ngModel" pPassword />
+                    <!-- <input type="password" size="20" pInputText [(ngModel)]="cPassword"  name="cPassword" appPassword  required="required" #control8="ngModel"> -->
+                     <!-- <span class="errMsg" *ngIf="cpassword.errors?.required && (cpassword.touched)">Password -->
+                        <!-- is Required</span>
+                    <span class="errMsg" *ngIf="cpassword.errors?.isError && !cpassword.errors?.required ">Please Enter -->
+                        <!-- Valid Password!</span> -->
+                     <!-- <span *ngIf="cpassword.errors?.mustMacth">password must be same</span> -->
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Expected Salary :</b></h3>
+                    <!-- <input type="type" size="20" pInputText [(ngModel)]="Salary" name="Salary"> -->
+                    <input matInput type="text" pInputText  [ngModel]="Salary | currency:'INR':'symbol':'2.2'" [ngModelOptions]="{updateOn:'blur'}" 
+                    (ngModelChange)="Salary=$event" name="testPrice"/>
+
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Stream :</b></h3>
+                    <p-dropdown [options]="streamList" [(ngModel)]="stream" name="stream"></p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3>Select State</h3>
+                    <p-autoComplete [suggestions]="filteredstates" (completeMethod)="filterstates($event)" [size]="30"
+                        [minLength]="1" placeholder="Hint: type 'v' or 'f'" [dropdown]="true" [(ngModel)]="SelectState"
+                        name="SelectState">
+                        <ng-template let-brand pTemplate="item">
+                            <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+
+                                <div style="font-size:14px;float:right;margin:10px 10px 0 0">{{brand}}</div>
+                            </div>
+                        </ng-template>
+                    </p-autoComplete>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Contact Number:</b></h3>
+                    <p-chips [(ngModel)]="Contact" name="Contact" placeholder="chips control" pKeyFilter="int">
+                    </p-chips>
+                </div>
+            </div>
+            <div class="ui-g-4">
+
+                <div>
+                    <h3><b>Any Prior Experience:</b></h3>
+                    <p-inputSwitch [(ngModel)]="Experience" name="Experience"></p-inputSwitch>
+                </div>
+            </div>
+            <div class="ui-g-4">
+
+                <div>
+                    <h3><b>Year of passed out:</b></h3>
+                    <p-inputMask mask="99/99/9999" [(ngModel)]="Yearofpassedout" name="Yearofpassedout" placeholder=""
+                        slotChar="mm/dd/yyyy">
+                    </p-inputMask>
+                </div>
+            </div>
+            <div class="ui-g-4">
+
+                <div>
+                    <h3><b>Gender:</b></h3>
+                    <p-radioButton name="gender" value="Male" label="Male" [(ngModel)]="Gender">
+                    </p-radioButton>
+                    <p-radioButton name="gender" value="Female" label="Female" [(ngModel)]="Gender">
+                    </p-radioButton>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3 class="first">Rate Yourself In Communication Skills {{val1}}</h3>
+                    <p-rating [(ngModel)]="Rating" name="Rating"></p-rating>
+                </div>
+            </div>
+            <div class="ui-g-4">
+                <div>
+                    <h3><b>Flexible to work in</b></h3>
+                    <p-listbox [options]="selectedplaces" (click)='getSelectedplaces()' [(ngModel)]="Flexibletoworkin"
+                        name="Flexibletoworkin" multiple="multiple" checkbox="checkbox" filter="filter"
+                        optionLabel="value.name">
+                        <p-header>
+                            Areas
+                        </p-header>
+                    </p-listbox>
+                    <p>Selected places: <span *ngFor="let c of Flexibletoworkin"
+                            style="margin-right: 10px">{{c.name}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="ui-g-4">
+
+                <p-accordion>
+                    <p-accordionTab header="Address">
+                        <div>
+                            <h3><b>City :</b></h3>
+                            <input id="input" type="text" [(ngModel)]="City" name="City" size="20" pInputText>
+                        </div>
+                        <div>
+                            <h3><b>Street :</b></h3>
+                            <input id="input" type="text" [(ngModel)]="Street" name="Street" size="20" pInputText>
+                        </div>
+                        <div>
+                            <h3><b>Door no:</b></h3>
+                            <input id="input" type="text" [(ngModel)]="Door" name="Door" size="20" pInputText>
+                        </div>
+                        <div>
+                            <h3><b>Pincode :</b></h3>
+                            <input id="input" type="text" [(ngModel)]="Pincode" name="Pincode" size="20" appZipcode
+                                required="required" #zipcode pInputText>
+
+
+                            <span class="errMsg" *ngIf="zipcode.errors?.required && (zipcode.touched)">pincode
+                                is Required</span>
+                            <span class="errMsg" *ngIf="zipcode.errors?.isError && !zipcode.errors?.required ">Should
+                                contain only 6 numbers</span>
+
+
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+        <pre> <button pButton type="button"  (click)="add()" label="Add"></button>  <button pButton type="button"  (click)="viewchild()" label="View" ></button> <button pButton type="reset" label="Reset"  ></button>   <button pButton type="button" (click)="addtotable(appform)" label="Add To Table" ></button>    <button pButton type="submit"  (click)="onSubmit(appform)" label="Submit" ></button></pre>
+        <pre *ngIf=data >{{appform.value | json}}</pre>
+        
+        <h3 style="color: red">{{formname1}}</h3>
+
+        <!-- <p-growl [(value)]="msgs"></p-growl> -->
+      
+        
+        <app-child1 [x]="appform.value"></app-child1>
+
+     
+       
+        
+      
+       
+        <p-table [columns]="scrollableCols" [value]="table" [scrollable]="true">
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col *ngFor="let col of columns" style="width:150px">
+
+                    <col style="width:150px">
+                </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+
+                    <th>Flexibletoworkin</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+
+                    <td>
+                        <div *ngFor='let i of rowData["Flexibletoworkin"]'>{{i['value']['name']}}</div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+
+    </form>
+</div>

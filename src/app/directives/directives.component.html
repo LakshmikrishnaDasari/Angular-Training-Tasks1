@@ -1,0 +1,74 @@
+<h1 style="text-align: center; color: crimson">Directives</h1>
+<h3 style="text-align: center; color:darkslateblue">Attribute Directives</h3>
+<!-- <h2 appHighlighter>This is a Custom Directive.</h2> -->
+<h1>Custom Directive</h1>
+ 
+<h4>Pick a highlight color</h4>
+<div>
+  <input type="radio" name="colors" (click)="color='lightgreen'">Green
+  <input type="radio" name="colors" (click)="color='yellow'">Yellow
+  <input type="radio" name="colors" (click)="color='cyan'">Cyan
+</div>
+<p [appHighlighter]="color">Highlight me!</p>
+ <p [appHighlighter]="color" defaultColor="violet">
+  Highlight me too!
+</p> 
+
+
+
+  
+
+
+
+<h4>Ng Class Directive</h4>
+<p [ngClass]="{Classone:cone, Classtwo:ctwo}">Angular Training</p>
+<!-- <button (click)="toggle()">Click</button> -->
+
+
+<h4>Ng Style Directive</h4>
+<p [ngStyle]="{'font-style':style, 'color':col, 'font-size':size}">Miracle Apps Team</p>
+
+
+<h4>ngIfDirective</h4>
+<p-toggleButton onLabel="On" offLabel="Off" (click)="toggle1()" onIcon="fa-toggle-on" offIcon="fa-toggle-off"></p-toggleButton>
+<br>
+<div *ngIf="On">
+    <p-dropdown [options]="cities2" [disabled]="!On" optionLabel="name"></p-dropdown>
+</div>
+<div *ngIf="!On"></div>
+
+
+<h4>ngFor Directive</h4>
+<h5>Ide's Which i am familiar with</h5>
+<div *ngFor="let v of values1; let i=index">{{i+1}}.{{ v }}</div>
+
+<h4>ngSwitch Directive</h4>
+<h4>1.example</h4>
+<select [(ngModel)]="values">
+    <option>one</option>
+    <option>two</option>
+    <option>three</option>
+</select>
+
+<div [ngSwitch]="values">
+    <p *ngSwitchCase="'one'">one</p>
+    <p *ngSwitchCase="'two'">two</p>
+    <p *ngSwitchCase="'three'">three</p>
+</div>
+&nbsp;
+<h4>2. example</h4>
+<div>
+    <button pButton type="button"  label="calendar" (click)="con='calendar'"></button> &nbsp;
+    
+    <button pButton type="button" label="color" (click)="con='color'"></button>
+</div>
+<div [ngSwitch]="con">
+    <div *ngSwitchCase="'calendar'">
+        <p-calendar [(ngModel)]="value"></p-calendar>
+    </div>
+    <div *ngSwitchCase="'color'">
+        <h3>Overlay</h3>
+        <p-colorPicker [(ngModel)]="color2"></p-colorPicker>
+        <p style="margin-top:.5em">Selected Color: <span [ngStyle]="{'color':color2}">{{color2}}</span></p>
+    </div>
+</div>

@@ -1,0 +1,338 @@
+<app-child-for-output (message1)="ChangeTitle1 ($event)"></app-child-for-output>
+<h1 style="text-align:center ; color: blue">Application Form {{message}}</h1>
+
+<form [formGroup]="Applicationform">
+    <div class="ui-g">
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Name :</b></h3>
+                <input id="input" type="text" formControlName="name" size="20" pInputText>
+                <p-message severity="error" text="Field is required"
+                    *ngIf="Applicationform.get('name').touched &&  Applicationform.get('name').errors?.required">Name
+                    is Required></p-message>
+              
+                    <p-message severity="error" text="Field should contain minimum 6 to maxium 30 characters"
+                    *ngIf="Applicationform.get('name').errors?.minlength ||Applicationform.get('name').errors?.maxlength"></p-message>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <app-formimport [Applicationform]="Applicationform"></app-formimport>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Date Of Birth:</b></h3>
+                <p-calendar formControlName="DateOfBirth" placeholder="Calendar control"></p-calendar>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Interested In:</b></h3>
+                <p-checkbox name="group2" value="Development" label="Development"
+                    [formControl]="Applicationform.controls['Qualification']" inputId="Development"></p-checkbox>
+                <p-checkbox name="group2" value="QA" label="QA"
+                    [formControl]="Applicationform.controls['Qualification']" inputId="QA"></p-checkbox>
+                <p-checkbox name="group2" value="Database" label="Database"
+                    [formControl]="Applicationform.controls['Qualification']" inputId="Database"></p-checkbox>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Email Address:</b></h3>
+                <input id="input" type="text" formControlName="EmailAddress" size="20" pInputText>
+                <p-message severity="error" text="Email is required"
+                    *ngIf="Applicationform.get('EmailAddress').touched &&  Applicationform.get('EmailAddress').errors?.required">
+                </p-message>
+
+                <p-message severity="error" text="Please Enter Valid Email!"
+                    *ngIf="Applicationform.get('EmailAddress').errors?.pattern"></p-message>
+
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>password:</b></h3>
+                <input type="password" onCopy="return false" onPaste="return false" placeholder="Hint: format of 'Mguy@jjjjj'" formControlName="password"
+                    pPassword />
+                    <p-message severity="error" text="Password is required"
+                    *ngIf="Applicationform.get('password').touched &&  Applicationform.get('password').errors?.required">
+                </p-message>
+
+                <p-message severity="error" text="Please Enter Valid Password!"
+                *ngIf="Applicationform.get('password').errors?.pattern"></p-message>
+                
+            </div>
+
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Confirm password:</b></h3>
+                <input type="password" formControlName="Confirmpassword" pPassword />
+                <p-message severity="error" text="Confirm Password is required"
+                    *ngIf="Applicationform.get('Confirmpassword').errors?.required && (Applicationform.get('Confirmpassword').touched)">
+                </p-message>
+                <p-message severity="error" text="Confirm password should match
+                entered password" *ngIf="Applicationform.get('Confirmpassword').errors?.isError">
+                    </p-message>
+                  
+                
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Expected Salary :</b></h3>
+                <input id="input" type="text" formControlName="salary" size="20" pInputText />
+                <span
+                    *ngIf="Applicationform.get('salary').errors?.required && (Applicationform.get('salary').touched)">salary
+                    is Required</span>
+                <span *ngIf="Applicationform.get('salary').errors?.salary">salary should not be mentioned in decimals &
+                    should be above 5k</span>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3>Select State</h3>
+                <p-autoComplete [suggestions]="filteredstates" (completeMethod)="filterstates($event)" [size]="30"
+                    [minLength]="1" placeholder="Hint: type 'v' or 'f'" [dropdown]="true" formControlName="SelectState">
+                    <ng-template let-brand pTemplate="item">
+                        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+
+                            <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{brand}}</div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Stream :</b></h3>
+                <p-dropdown [options]="stream" formControlName="Stream"></p-dropdown>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Contact Number:</b></h3>
+                <p-chips formControlName="ContactNumber" placeholder="chips control" pKeyFilter="int"></p-chips>
+            </div>
+        </div>
+
+
+        <div class="ui-g-4">
+
+            <div>
+                <h3><b>Any Prior Experience:</b></h3>
+                <p-inputSwitch formControlName="AnyPriorExperience"></p-inputSwitch>
+            </div>
+        </div>
+        <div class="ui-g-4">
+
+            <div>
+                <h3><b>Year of passed out:</b></h3>
+                <p-inputMask mask="99/99/9999" formControlName="Yearofpassedout" placeholder="" slotChar="mm/dd/yyyy">
+                </p-inputMask>
+            </div>
+        </div>
+        <div class="ui-g-4">
+
+            <div>
+                <h3><b>Gender:</b></h3>
+                <p-radioButton name="group1" value="Male" label="Male" formControlName="Gender" inputId="opt1">
+                </p-radioButton>
+                <p-radioButton name="group1" value="Female" label="Female" formControlName="Gender" inputId="opt2">
+                </p-radioButton>
+            </div>
+        </div>
+
+        <div class="ui-g-4">
+            <div>
+                <h3 class="first">Rate Yourself In Communication Skills {{val1}}</h3>
+                <p-rating formControlName="Rating"></p-rating>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div>
+                <h3><b>Flexible to work in</b></h3>
+                <p-listbox [options]="places" (click)='getSelectedplaces()' formControlName="Flexibletoworkin"
+                    multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="value.name">
+                    <p-header>
+                        Areas
+                    </p-header>
+                </p-listbox>
+                <p>Selected places: <span *ngFor="let c of selectedplaces" style="margin-right: 10px">{{c.label}}</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="ui-g-4">
+
+            <p-accordion>
+                <p-accordionTab header="Address">
+                    <div formGroupName="addresForm">
+                        <div>
+                            <h3><b>City :</b></h3>
+                            <input id="input" type="text" formControlName="Address" size="20" pInputText>
+                        </div>
+                        <div>
+                            <h3><b>Street :</b></h3>
+                            <input id="input" type="text" formControlName="Address1" size="20" pInputText>
+                        </div>
+                        <div>
+                            <h3><b>Door no:</b></h3>
+                            <input id="input" type="text" formControlName="Address2" size="20" pInputText>
+                        </div>
+                        <div>
+                            <h3><b>Pincode :</b></h3>
+                            <input id="input" type="text" formControlName="pincode" size="20" pInputText>
+                            <!-- <span
+                            *ngIf="Applicationform.get('pincode').errors?.required && (Applicationform.get('pincode').touched)">pincode
+                            is Required</span>
+                        <span *ngIf="Applicationform.get('pincode').errors?.isError">pincode should not exceed 6 numbers
+                            and only numbers are accessed</span> -->
+                        </div>
+                        <p-button label="Submit" (click)="JsonVal()"></p-button>
+                    </div>
+
+                </p-accordionTab>
+            </p-accordion>
+
+        </div>
+
+    </div>
+
+    <button pButton type="button" label="ADD" (click)=add() [disabled]="!Applicationform.valid"></button>
+    <button pButton type="button" (click)=reset() label="RESET"></button> &nbsp;
+    <button pButton type="button" (click)='addToTable()' label="ADD TO TABLE"></button> &nbsp;
+    <button pButton type="button" (click)='submitForm()' label="submit form"></button>
+
+
+    <div>
+        <p *ngIf=add1>{{Applicationform.value | json}}</p>
+    </div>
+
+</form>
+<h3>Horizontal</h3>
+<p-table [columns]="scrollableCols" [value]="applicationGrid" [scrollable]="true">
+    <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+            <col *ngFor="let col of columns" style="width:150px">
+
+            <col style="width:150px">
+        </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+
+            <th>Flexibletoworkin</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-form let-columns="columns">
+        <tr>
+            <!-- <td *ngFor="let col of columns">
+                <span *ngIf="col.field === 'addresForm' ? temp1 : temp2"></span>
+                <ng-template #temp1>
+        {{ rowData[col.field]['addresForm']['Address']  + rowData['addresForm']['Address1'] + rowData['addresForm']['pincode'] }}
+                </ng-template>
+                <ng-template #temp2>
+                        {{rowData[col.field]}}
+                </ng-template>
+                {{rowData[col.field]}}
+            </td> -->
+            <td>{{form.name}}</td>
+            <td>{{form.DateOfBirth}}</td>
+            <td>{{form.Qualification}}</td>
+            <td>{{form.EmailAddress}}</td>
+            <td>{{form.password}}</td>
+            <td>{{form.Stream}}</td>
+            <td>{{ form['addresForm']['Address'] + ', ' +form['addresForm']['Address1'] + ', ' + form['addresForm']['pincode'] }}
+            </td>
+            <td>{{form.AnyPriorExperience}}</td>
+            <td>{{form.Yearofpassedout}}</td>
+            <td>{{form.Gender}}</td>
+            <td>{{form.Rating}}</td>
+            <td>{{form.ContactNumber}}</td>
+            <td>{{form.SelectState}}</td>
+            <td>
+                <div *ngFor='let i of form.Flexibletoworkin'>{{i['value']['name']}}</div>
+            </td>
+
+        </tr>
+    </ng-template>
+</p-table>
+<pre>{{vin | json}}</pre>
+<pre>
+        {{Applicationform.value | json}}
+    </pre>
+
+<!-- <h3 class="first">Basic</h3>
+        <p-table [value]="applicationGrid">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>name</th>
+                    <th>DateOfBirth</th>
+                    <th>Qualification</th>
+                    <th>SelectState</th>
+                    <th>Stream</th>
+                    <th>Address</th>
+                    <th>AnyPriorExperience</th>
+                    <th>Yearofpassedout</th>
+                    <th>Gender</th>
+                    <th>ContactNumber</th>
+                    <th>Flexibletoworkin</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-form>
+                <tr>
+                    <td>{{form.name}}</td>
+                    <td>{{form.DateOfBirth}}</td>
+                    <td>{{form.Qualification}}</td>
+                    <td>{{form['SelectState']['name']}}</td>
+                    <td>{{form.SelectState.name}}</td>
+                    <td>{{form.Stream}}</td>
+                    <td>{{form.Address}}</td>
+                    <td>{{form.AnyPriorExperience}}</td>
+                    <td>{{form.Yearofpassedout}}</td>
+                    <td>{{form.Gender}}</td>
+                    <td>{{form.ContactNumber}}</td>
+                    <td>
+                        <div *ngFor='let i of form.Flexibletoworkin'>{{i['value']['name']}}</div>
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table> -->
+
+<!-- <h3>Frozen Columns</h3>
+    <p-table [columns]="scrollableCols" [value]="applicationGrid" [frozenColumns]="frozenCols" [scrollable]="true"
+        scrollHeight="200px" frozenWidth="300px">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col *ngFor="let col of columns" style="width:150px">
+                <col style="width:150px">
+                <col style="width:150px">
+            </colgroup>
+        </ng-template>
+
+       
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th>State</th>
+                <th>Flexible to work in</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+                <td>{{rowData[col.field].SelectState.name}}</td> 
+                 <td>
+                    <div *ngFor='let i of form.Flexibletoworkin'>{{i['value']['name']}}</div>
+                </td> 
+            </tr>
+        </ng-template>
+    </p-table> -->

@@ -1,0 +1,43 @@
+<form class="fa" [formGroup]="addform">
+    <h3><b>Name :</b></h3>
+    <input id="input" type="text" formControlName="name" size="20" pInputText>
+    <br> <br>
+    <h3><b>Last Name :</b></h3>
+    <input id="input" type="text" formControlName="lname" size="20" pInputText>
+    <br> <br>
+    <div>
+            <img src="assets\plus1.png" alt="add" width="20" height="20" (click)="addAddress()" />
+            <img src="assets\minus1.png" alt="delete" width="20" height="20" (click)="removeAddress(index)" />
+        </div>
+    <div formArrayName="address">
+
+        <div *ngFor="let group of addressArray.controls; let i=index;" [formGroupName]="i">
+            <h3>address {{i+1}}</h3>
+            <br> <br>
+           
+            <br> <br>
+            <p-checkbox name="groupname" value="Primary Address" formControlName="PrimaryAddress"
+                label="Primary Address" ></p-checkbox>
+            <br> <br>
+            <h3><b>Street:</b></h3>
+            <input id="input" type="text" formControlName="Street" size="20" pInputText>
+            <br> <br>
+            <h3><b>City:</b></h3>
+            <input id="input" type="text" formControlName="City" size="20" pInputText>
+            <h3><b>Zip code:</b></h3>
+            <input id="input" type="text" formControlName="Zipcode" size="20" pInputText>
+
+            <br><br>
+
+        </div>
+
+
+        <br>
+        <pre> <button pButton type="button"  (click)="submit()" label="submit"></button>   <button pButton type="button"  (click)="add()" label="Add To Json"></button></pre>
+
+        <pre *ngIf=data>
+          Form value: {{ addform.value | json}}
+     
+       </pre>
+</div>
+</form>

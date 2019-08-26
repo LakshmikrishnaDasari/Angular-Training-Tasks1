@@ -1,0 +1,32 @@
+<form class="fa" [formGroup]="nestedforms" >
+        Firstname:  <input id="input" formControlName="FirstName" type="text" size="30"> 
+        <br> <br>   
+        Lastname:  <input id="input"  formControlName="LastName" type="text" size="30">  
+         <br> <br> 
+        <div formArrayName="address"  >
+          <div *ngFor="let group of addressArray.controls; let i=index;" [formGroupName]="i">
+          <h3>address {{i+1}}</h3>
+          <br> <br>   
+          <div>
+            <img src="assets\plus1.png" alt="add" width="20" height="20" (click)="addAddress()"/>
+            <img src="assets\minus1.png" alt="delete" width="20" height="20" (click)="removeAddress()"/>
+          </div>
+           <br> <br>
+           <p-checkbox name="groupname" value="Primary Address" formControlName="PrimaryAddress"
+             label="Primary Address" [(ngModel)]="selectedValues"></p-checkbox>
+           <br> <br>  
+            Street:  <input id="input" formControlName="Street" type="text" size="30">
+            <br> <br>
+            City:  <input id="input" formControlName="City" type="text" size="30">
+            <br><br>
+            Zip code:  <input id="input" formControlName="Zipcode" type="text" size="30"> 
+            </div>
+        </div>
+      <br>
+      <pre> <button pButton type="button"  (click)="submit()" label="submit"></button>   <button pButton type="button"  (click)="add()" label="Add To Json"></button></pre>
+      
+      <pre *ngIf=data>
+          Form value: {{ nestedforms.value | json}}
+      </pre>
+        </form>
+        

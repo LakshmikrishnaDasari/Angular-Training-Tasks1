@@ -1,0 +1,160 @@
+<form [formGroup]="Applicationform">
+
+  <h1 style="text-align:center ; color: blue">Application Form</h1>
+  <div class="ui-g">
+  <div class="ui-g-4">
+    <div>
+      <h3><b>Name :</b></h3>
+        <input id="input" type="text" formControlName="name" size="20" pInputText>
+        <span *ngIf="Applicationform.get('name').errors?.required && (Applicationform.get('name').touched)">Name is Required</span>
+        <span *ngIf="Applicationform.get('name').errors?.minlength">Field should contain minimum  6 chars</span> 
+    </div>
+    
+  </div>
+  <div class="ui-g-4">
+    <div>
+      <h3><b>Date Of Birth:</b></h3>
+      <p-calendar formControlName="DateOfBirth" placeholder="Calendar control"></p-calendar>
+    </div>
+  </div>
+  <div class="ui-g-4">
+    <div>
+      <h3><b>Qualification:</b></h3>
+      <p-checkbox name="group2" value="UG" label="UG" [formControl]="Applicationform.controls['Qualification']" inputId="UG"></p-checkbox>
+      <p-checkbox name="group2" value="PG" label="PG" [formControl]="Applicationform.controls['Qualification']" inputId="PG"></p-checkbox>
+    </div>
+  </div>
+  <div class="ui-g-4">
+      <div>
+        <h3><b>Email Address:</b></h3>
+        <input id="input" type="text" formControlName="EmailAddress" size="20" pInputText>
+            <span *ngIf="Applicationform.get('EmailAddress').errors?.required && (Applicationform.get('EmailAddress').touched)">Email id is Required</span>
+            <span *ngIf="Applicationform.get('EmailAddress').errors?.pattern"> invalid email!</span> 
+      </div>
+    </div>
+    <div class="ui-g-4">
+        <div>
+          <h3><b>password:</b></h3>
+          <input type="password" formControlName="password" pPassword />
+        </div>
+      </div>
+      <div class="ui-g-4">
+          <div>
+            <h3><b>Confirm password:</b></h3>
+            <input type="password" placeholder="Autocomplete function" formControlName="Confirmpassword" pPassword />
+          </div>
+        </div>
+  <div class="ui-g-4">
+    <div>
+      <h3><b>Select State:</b></h3>
+      <p-autoComplete  [suggestions]="stateSuggestions"
+        (completeMethod)="searchState($event)" placeholder="Autocomplete function" formControlName="SelectState" field="name"></p-autoComplete>
+    </div>
+  </div>
+  <div class="ui-g-4">
+    <div>
+      <h3><b>Stream :</b></h3>
+      <p-dropdown [options]="stream" formControlName="Stream"></p-dropdown>
+    </div>
+  </div>
+ 
+  <div class="ui-g-4">
+
+    <div>
+      <h3><b>Address:</b></h3>
+      <textarea pInputTextarea formControlName="Address"></textarea>
+    </div>
+  </div>
+  <div class="ui-g-4">
+
+    <div>
+      <h3><b>Any Prior Experience:</b></h3>
+      <p-inputSwitch  formControlName="AnyPriorExperience"></p-inputSwitch>
+    </div>
+  </div>
+  <div class="ui-g-4">
+
+      <div>
+          <h3><b>Year of passed out:</b></h3>
+          <p-inputMask mask="99/99/9999" formControlName="Yearofpassedout" placeholder="" slotChar="mm/dd/yyyy"></p-inputMask>
+        </div>
+  </div>
+  <div class="ui-g-4">
+
+      <div>
+          <h3><b>Gender:</b></h3>
+          <p-radioButton name="group1" value="Male" label="Male"  formControlName="Gender" inputId="opt1"></p-radioButton>
+          <p-radioButton name="group1" value="Female" label="Female"  formControlName="Gender" inputId="opt2"></p-radioButton>
+        </div>
+  </div>
+  <div class="ui-g-4">
+      <div>
+        <h3><b>Contact Number:</b></h3>
+        <p-chips  formControlName="ContactNumber" placeholder="chips control" pKeyFilter="int"></p-chips>
+      </div>
+    </div>
+    <div class="ui-g-4">
+        <div>
+            <h3 class="first">Rate Yourself In Communication Skills {{val1}}</h3> 
+            <p-rating ></p-rating>
+        </div>
+      </div>
+  <div class="ui-g-4">
+    <div>
+      <h3><b>Flexible to work in</b></h3>
+      <p-listbox [options]="places" (click)='getSelectedplaces()' formControlName="Flexibletoworkin" multiple="multiple" checkbox="checkbox" filter="filter"
+        optionLabel="value.name">
+        <p-header>
+        Areas
+        </p-header>
+      </p-listbox>
+      <p>Selected places: <span *ngFor="let c of selectedplaces" style="margin-right: 10px">{{c.label}}</span></p>
+    </div>
+  </div>
+  
+</div>
+<pre>
+<button pButton type="button" label="ADD" (click)=add() [disabled]="!Applicationform.valid"></button>  <button pButton type="button" (click)=reset() label="RESET" ></button>  <button pButton type="button" (click)='addToTable()' label="ADD TO TABLE" ></button>
+</pre>
+<div> <p *ngIf=add1>{{Applicationform.value | json}}</p></div>
+
+
+
+
+
+<h3 class="first">Basic</h3>
+<p-table [value]="applicationGrid">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>name</th>
+            <th>DateOfBirth</th>
+            <th>Qualification</th>    
+            <th>SelectState</th>
+            <th>Stream</th>
+            <th>Address</th>
+            <th>AnyPriorExperience</th>
+            <th>Yearofpassedout</th>
+            <th>Gender</th>
+            <th>ContactNumber</th>
+            <th>Flexibletoworkin</th>     
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-form>
+        <tr>
+            <td>{{form.name}}</td>
+            <td>{{form.DateOfBirth}}</td>
+            <td>{{form.Qualification}}</td>
+            <!-- <td>{{form['SelectState']['name']}}</td> -->
+            <td>{{form.SelectState.name}}</td>
+            <td>{{form.Stream}}</td>
+            <td>{{form.Address}}</td>
+            <td>{{form.AnyPriorExperience}}</td>
+            <td>{{form.Yearofpassedout}}</td>
+            <td>{{form.Gender}}</td>
+            <td>{{form.ContactNumber}}</td>
+            <td><div *ngFor='let i of form.Flexibletoworkin'>{{i['value']['name']}}</div></td>
+        </tr>
+    </ng-template>
+  
+</p-table>
+</form>

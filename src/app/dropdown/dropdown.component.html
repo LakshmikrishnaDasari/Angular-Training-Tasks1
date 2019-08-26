@@ -1,0 +1,21 @@
+<div>
+  
+    
+        <p-toggleButton onLabel="On" offLabel="Off" (click)="toggle()" onIcon="fa-toggle-on" offIcon="fa-toggle-off"
+            [(ngModel)]="checked">{{buttonName}}</p-toggleButton>
+    
+    <br>
+    
+   
+    </div>
+    <br>
+        <div *ngIf="On">
+            <select (change)="firstDropDownChanged($event.target.value)">
+                <option>Select</option>
+                <option *ngFor='let v of _values1'>{{ v }}</option>
+            </select>
+    
+            <select *ngIf="enableSubDropDown">
+                <option *ngFor='let v of _values2'>{{ v }}</option>
+            </select>
+        </div>

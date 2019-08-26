@@ -1,0 +1,18 @@
+ <form [formGroup]="postdata">
+
+    <div>
+        <h4>Name:</h4><input type="text" formControlName="name" pInputText />
+    </div>
+
+    <div>
+        <h4>Age:</h4><input type="text" formControlName="age" pInputText />
+    </div>
+
+    <div>
+        <h4>Salary:</h4><input type="text" formControlName="salary" pInputText />
+    </div>
+
+    <button pButton type="button" label="AddUser" (click)="addUser(postdata)"></button> 
+</form> 
+
+

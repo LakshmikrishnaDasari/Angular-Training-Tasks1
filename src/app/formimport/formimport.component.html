@@ -1,0 +1,14 @@
+<div [formGroup]="Applicationform">
+
+
+    <h3><b>last name :</b></h3>
+    <input id="input" type="text" formControlname="lname" size="20" pInputText required="required">
+
+
+    <span *ngIf="Applicationform.get('lname').touched && Applicationform.get('lname').errors?.required">First Name
+        is Required</span>
+    <span *ngIf="Applicationform.get('lname').errors?.minlength">First Name Contain Minimum 3 Chars</span>
+
+
+
+</div>

@@ -1,0 +1,32 @@
+<p-table [value]="getjson1">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>addressType</th>
+            <th>Address Line1</th>
+            <th>Address Line2</th>
+            <th>Address Line3</th>
+            <th>Address Line4</th>
+            <th>city</th>
+            <th>Postal code</th>
+            <th>country</th>
+        </tr>
+    </ng-template>
+
+
+    
+
+     <ng-template pTemplate="body" let-emps >
+        <tr *ngFor="let emp1 of emps.deliveryAddresses" >
+            <td>{{emp1.addressType }}</td>
+            <td>{{emp1.addressLineOne }}</td>
+            <td>{{emp1.addressLineTwo }}</td>
+            <td>{{emp1.addressLineThree }}</td>
+            <td>{{emp1.addressLineFour }}</td>
+            <td>{{emp1.city }}</td>
+            <td>{{emp1.zipCode }}</td>
+            <td>{{emp1.country }}</td>
+       
+        </tr> 
+
+    </ng-template>
+</p-table>

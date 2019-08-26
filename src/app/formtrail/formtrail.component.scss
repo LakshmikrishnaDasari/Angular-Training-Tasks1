@@ -1,0 +1,14 @@
+ ::ng-deep body .ui-message.ui-message-error {
+    background-color: transparent;
+    border: 0 none;
+    color: #f31404;
+}
+
+::ng-deep .pi-times:before {
+    content: none;
+}
+
+// :host ::ng-deep ui-message-text ui-message ui-widget ui-corner-all ui-message-error .ng-star-inserted .ui-message-icon{
+// background-color: aqua;
+// font-family: cursive;
+// }

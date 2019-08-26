@@ -1,0 +1,156 @@
+<h1 style="text-align: center; color: crimson">Pipes</h1>
+<div class="ui-g">
+        <div class="ui-g-4">
+                <p-accordion>
+                    <p-accordionTab header="async Pipe">
+                        Working On: {{ text | async}}
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        
+    
+    <div class="ui-g-4">
+        <p-accordion>
+            <p-accordionTab header="Number Pipes">
+                <h2>Number Pipes</h2>
+                <p>{{1056672| number}}</p>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+    <div class="ui-g-4">
+            <p-accordion>
+                <p-accordionTab header="KeyValue Pipes">
+                    <h2>KeyValue Pipe</h2>
+    
+                    <p>Object</p>
+                    <div *ngFor="let item of object | keyvalue">
+                        {{item.key}}:{{item.value}}
+                    </div>
+                    <p>Map</p>
+                    <div *ngFor="let item of map | keyvalue">
+                        {{item.key}}:{{item.value}}
+                    </div>
+    
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    <div class="ui-g-4">
+        <p-accordion>
+            <p-accordionTab header="Decimal Pipes">
+                <h2>Decimal Pipes</h2>
+                <h4>10.456 | number:'2.2-3'</h4>
+                <p>{{10.456 | number:'2.2-3'}}</p>
+                <h4>10.456 | number:'2.4-5'</h4>
+                <p>{{10.456 | number:'2.4-5'}}</p>
+                <h4>10.4567 | number:'2.1-2'</h4>
+                <p>{{10.4567 | number:'2.1-2'}}</p>
+                <h4>10.4567 | number:'3.1-2'</h4>
+                <p>{{10.4567 | number:'3.1-2'}}</p>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+
+    <div class="ui-g-4">
+        <p-accordion>
+            <p-accordionTab header="Percent Pipes">
+                <h2>Percent Pipes</h2>
+                <p>{{0.25 | percent}}</p>
+                <p>{{85| percent}}</p>
+                <h4>Percent Pipe Using Format</h4>
+                {{2.5 | percent:'2.3-6'}}
+            </p-accordionTab>
+
+        </p-accordion>
+    </div>
+    <div class="ui-g-4">
+        <p-accordion>
+            <p-accordionTab header="Currency Pipes">
+                <h2>Currency Pipes</h2>
+                <h4>Currency pipe with Symbol</h4>
+                <p>{{0.25 |currency}}</p>
+                <h4>Currency pipe with Code</h4>
+                <p>{{0.25 |currency: 'GBP': 'code'}}</p>
+                <p>{{0.25 |currency: 'BZD': 'code'}}</p>
+
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+   
+    <div class="ui-g-4">
+            <p-accordion>
+                <p-accordionTab header="String Pipes">
+    
+                    <h2>String Pipes</h2>
+                    <p>{{name}}</p>
+                    <h4>Lower Case Pipe</h4>
+                    <p>{{name | lowercase}}</p>
+                    <h4>Upper Case Pipe</h4>
+                    <p>{{name | uppercase}}</p>
+                    <h4>Title Case Pipe</h4>
+                    <p>{{name | titlecase}}</p>
+                    <h4>Slice Pipe with one Value</h4>
+                    <p>{{name | slice:7}}</p>
+                    <h4>Slice Pipe with Two Value</h4>
+                    <p>{{name | slice:7:15}}</p>
+                    <h4>Json Pipe</h4>
+                    <p>{{employee | json}}</p>
+    
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+        <div class="ui-g-4">
+                <p-accordion>
+                    <p-accordionTab header="Time Pipes">
+                        <h2>Time Pipes</h2>
+                        <h4>ShortTime Pipe</h4>
+                        <p>{{date  |date:'shortTime'}}</p>
+                        <h4>Long Time Pipe</h4>
+                        <p>{{date  |date:'longTime'}}</p>
+                        <h4>Full Time Pipe</h4>
+                        <p>{{date  |date:'fullTime'}}</p>
+                        <h4>Time h/m/s Pipe</h4>
+                        <p>{{date  |date:'H.m.s'}}</p>
+                        <h4>Time h/m Pipe</h4>
+                        <p>{{date  |date:'H.m'}}</p>
+                        <h4>Time h Pipe</h4>
+                        <p>{{date  |date:'H'}}</p>
+        
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+            <!-- {{50000 | currency:"₹":0}} -->
+            <input matInput type="text"  [ngModel]="testPrice | currency:'USD':'symbol':'2.2'" [ngModelOptions]="{updateOn:'blur'}" 
+            (ngModelChange)="testPrice=$event"/>
+         
+    <div class="ui-g-4">
+        <p-accordion>
+            <p-accordionTab header="Date Pipes">
+                <h2>Date Pipes</h2>
+                <h4>Current Date Pipe</h4>
+                <p>{{date}}</p>
+                <p>{{date |date:'d/M/y'}}</p>
+                <h4>Short Pipe</h4>
+                <p>{{date |date:'short'}}</p>
+                <h4>long Pipe</h4>
+                <p>{{date |date:'long'}}</p>
+                <h4>full Pipe</h4>
+                <p>{{date |date:'full'}}</p>
+                <h4>medium Pipe</h4>
+                <p>{{date |date:'medium'}}</p>
+                <h4>ShortDate Pipe</h4>
+                <p>{{date  |date:'shortDate'}}</p>
+
+                <h4>MediumDate Pipe</h4>
+                <p>{{date  |date:'mediumDate'}}</p>
+                <h4>FullDate Pipe</h4>
+                <p>{{date  |date:'fullDate'}}</p>
+                <h4>LongDate Pipe</h4>
+                <p>{{date  |date:'longDate'}}</p>
+                <h4>YearDate Pipe</h4>
+                <p>{{date  |date:'yy'}}</p>
+
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+   
+</div>

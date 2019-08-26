@@ -1,0 +1,51 @@
+<div>
+    <button pButton type="button" label="Add User"(click)="getform()"></button> 
+</div>
+
+<p-table [value]="getdata1">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Employee Name</th>
+            <th>Employee gender</th>
+            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-emp>
+        <tr>
+            <td>{{emp.id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.gender}}</td>
+            
+            <td>
+                <button pButton type="button" label="Update" (click)="updateuser(emp)"></button> &nbsp;
+                <button pButton type="button" (click)="deleteuser(emp.id)" label="Delete"></button> </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+<p-dialog header="Employee Form" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
+        [maximizable]="true" [baseZIndex]="10000">
+        <form [formGroup]="proxyform">
+
+                <div>
+                    <h4>Id:</h4><input type="text" formControlName="id" pInputText />
+                </div>
+            
+                <div>
+                    <h4>Name:</h4><input type="text" formControlName="name" pInputText />
+                </div>
+            
+                <div>
+                    <h4>Gender:</h4><input type="text" formControlName="gender" pInputText />
+                </div>
+            <br>
+                <button pButton type="button" label="Update User" (click)="updateRow(proxyform.value)"></button> &nbsp;&nbsp;
+                <button pButton type="button" label="Add User" (click)="addUser(proxyform)"></button> 
+            </form> 
+            
+            
+</p-dialog>
+
+

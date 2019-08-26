@@ -1,0 +1,61 @@
+<h1 style="text-align:center ; color:blueviolet"><b>Data bindings</b></h1>
+<h2 style=" color:blue">Interpolation</h2>
+<h5>{{name}}</h5>
+<h2 style=" color:blue">String Interpolation</h2>
+<h5>{{name3}}</h5>
+
+
+<h2 style=" color:blue">Property Binding</h2>
+<input type="text" [value]='name1' size="20" pInputText/>
+
+
+
+
+<h2 style=" color:red">Difference between Interpolation and Propert binding</h2>
+<h3>when both input fields are set to true</h3>
+Property:
+<input [disabled]="true" [value]='name' pInputText/>
+Interpolation:
+<input disabled="true" value={{name}} pInputText/>
+<h3>when both input fields are set to true</h3>
+Property:
+<input [disabled]="false" [value]='name' pInputText/>
+Interpolation:
+<input disabled="false" value={{name}} pInputText/>
+
+
+
+
+
+<h2 style="color:blue">Event binding</h2>
+<h5>{{name2}}</h5>   
+<button (click)="changetitle()">Click here Show shortcut</button>
+
+
+
+
+<h2 style=" color:blue">Two Way Binding</h2>
+<input type="text" size="20" pInputText [(ngModel)]="name4"/>
+<h4>name:{{name4}}</h4> 
+
+
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+<p-captcha siteKey="6LfYvLMUAAAAACEQH9ilC5IdpRxaoqN_c3YR3juz" (onResponse)="showResponse($event)"></p-captcha>
+
+
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<!-- url="./upload.php" -->
+<h3 class="first">Advanced</h3>
+<p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+        multiple="multiple" accept="image/*" maxFileSize="1000000">
+    <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+        </ul>
+    </ng-template>
+</p-fileUpload>
+
+
+
+
